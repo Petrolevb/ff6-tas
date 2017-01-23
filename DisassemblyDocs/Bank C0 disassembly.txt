@@ -22132,36 +22132,37 @@ C0/B1A0:	60      	RTS
 
 Call subroutine aaaaaa (+$CA0000/$0A0200)
 (gen. act. B2)
-
-C0/B1A1:	A904    	LDA #$04	
-C0/B1A3:	A6E8    	LDX $E8
-C0/B1A5:	18      	CLC
-C0/B1A6:	65E5    	ADC $E5
-C0/B1A8:	9D9405  	STA $0594,X
-C0/B1AB:	A5E6    	LDA $E6
-C0/B1AD:	6900    	ADC #$00
-C0/B1AF:	9D9505  	STA $0595,X
-C0/B1B2:	A5E7    	LDA $E7
-C0/B1B4:	6900    	ADC #$00
-C0/B1B6:	9D9605  	STA $0596,X
-C0/B1B9:	A5EB    	LDA $EB
-C0/B1BB:	85E5    	STA $E5
-C0/B1BD:	9DF405  	STA $05F4,X
-C0/B1C0:	A5EC    	LDA $EC
-C0/B1C2:	85E6    	STA $E6
-C0/B1C4:	9DF505  	STA $05F5,X
-C0/B1C7:	A5ED    	LDA $ED
-C0/B1C9:	18      	CLC
-C0/B1CA:	69CA    	ADC #$CA
-C0/B1CC:	85E7    	STA $E7
-C0/B1CE:	9FF60500	STA $0005F6,X
-C0/B1D2:	E8      	INX
-C0/B1D3:	E8      	INX
-C0/B1D4:	E8      	INX
-C0/B1D5:	86E8    	STX $E8
-C0/B1D7:	A901    	LDA #$01
-C0/B1D9:	9DC405  	STA $05C4,X
-C0/B1DC:	4C6D9A  	JMP $9A6D
+Takes 3 arguments from B2 and jump to the corresponding address 
+after setting a + 0xCA to the bank (C0/B1CA)
+C0/B1A1:	A904    	LDA #$04	Set A = 04
+C0/B1A3:	A6E8    	LDX $E8		Set X = 7E/00E8
+C0/B1A5:	18      	CLC		Clear Carry Bit
+C0/B1A6:	65E5    	ADC $E5		Set A += 7E/00E5
+C0/B1A8:	9D9405  	STA $0594,X	Store A in ...
+C0/B1AB:	A5E6    	LDA $E6		Set A = 7E/00E6
+C0/B1AD:	6900    	ADC #$00	Add 0 to A
+C0/B1AF:	9D9505  	STA $0595,X	Store A in ...
+C0/B1B2:	A5E7    	LDA $E7		Set A = 7E/00E7
+C0/B1B4:	6900    	ADC #$00	Add 0 to A
+C0/B1B6:	9D9605  	STA $0596,X	Store A in ...
+C0/B1B9:	A5EB    	LDA $EB		Set A = 7E/00EB
+C0/B1BB:	85E5    	STA $E5		Store A in 7E/00E5
+C0/B1BD:	9DF405  	STA $05F4,X	Store A in ...
+C0/B1C0:	A5EC    	LDA $EC		Set A = 7E/00EC
+C0/B1C2:	85E6    	STA $E6		Store A in 7E/00E6
+C0/B1C4:	9DF505  	STA $05F5,X	Store A in ...
+C0/B1C7:	A5ED    	LDA $ED		Set A = 7E/00ED
+C0/B1C9:	18      	CLC		Clear Carry Bit
+C0/B1CA:	69CA    	ADC #$CA	A += 0xCA
+C0/B1CC:	85E7    	STA $E7		Store A in 7E/00E7
+C0/B1CE:	9FF60500	STA $0005F6,X	Store A in ...
+C0/B1D2:	E8      	INX		Increment X
+C0/B1D3:	E8      	INX		Increment X
+C0/B1D4:	E8      	INX		Increment X
+C0/B1D5:	86E8    	STX $E8		Store X in 7E/00E8
+C0/B1D7:	A901    	LDA #$01	Set A = 01
+C0/B1D9:	9DC405  	STA $05C4,X	Store A in
+C0/B1DC:	4C6D9A  	JMP $9A6D	Jump to C0/9A6D
 
 Jump to subroutine aaaaaa (+$CA0000/$0A0200), repeat XX times
 (gen. act. B3)
