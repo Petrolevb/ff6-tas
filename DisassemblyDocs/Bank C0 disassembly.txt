@@ -22135,31 +22135,31 @@ Call subroutine aaaaaa (+$CA0000/$0A0200)
 Takes 3 arguments from B2 and jump to the corresponding address 
 after setting a + 0xCA to the bank (C0/B1CA)
 C0/B1A1:    A9 04       LDA #$04        Set A = 04
-C0/B1A3:    A6 E8       LDX $E8         Set X = $E8                | X = $E8
+C0/B1A3:    A6 E8       LDX $E8         Load Event Stack Pointer (ESP)
 C0/B1A5:    18          CLC             Clear Carry Bit
 C0/B1A6:    65 E5       ADC $E5         Set A += $E5
-C0/B1A8:    9D 94 05    STA $0594,X     Store A in $05(94+X)       | X = $E8
+C0/B1A8:    9D 94 05    STA $0594,X     Store A in $05(94+ESP)
 C0/B1AB:    A5 E6       LDA $E6         Set A = $E6
 C0/B1AD:    69 00       ADC #$00        Add 0 to A
-C0/B1AF:    9D 95 05    STA $0595,X     Store A in $05(95+X)       | X = $E8
+C0/B1AF:    9D 95 05    STA $0595,X     Store A in $05(95+ESP)
 C0/B1B2:    A5 E7       LDA $E7         Set A = $E7
 C0/B1B4:    69 00       ADC #$00        Add 0 to A
-C0/B1B6:    9D 96 05    STA $0596,X     Store A in $05(96+X)       | X = $E8
+C0/B1B6:    9D 96 05    STA $0596,X     Store A in $05(96+ESP)
 C0/B1B9:    A5 EB       LDA $EB         Load Param #1 (low) in A
 C0/B1BB:    85 E5       STA $E5         Store A in $E5
-C0/B1BD:    9D F4 05    STA $05F4,X     Store A in $05(F4+X)       | X = $E8
+C0/B1BD:    9D F4 05    STA $05F4,X     Store A in $05(F4+ESP)
 C0/B1C0:    A5 EC       LDA $EC         Load Param #2 (addr high) in A
 C0/B1C2:    85 E6       STA $E6         Store A in $E6
-C0/B1C4:    9D F5 05    STA $05F5,X     Store A in $05(F5+X)       | X = $E8
+C0/B1C4:    9D F5 05    STA $05F5,X     Store A in $05(F5+ESP)
 C0/B1C7:    A5 ED       LDA $ED         Load Param #3 (Bank) in A
 C0/B1C9:    18          CLC             Clear Carry Bit
 C0/B1CA:    69 CA       ADC #$CA        Add CA at the Bank address 
 C0/B1CC:    85 E7       STA $E7         Store A in $E7
-C0/B1CE:    9F F6 05 00 STA $0005F6,X   Store A in 00/05(F6+X)     | X = $E8
-C0/B1D2:    E8          INX             Increment X
-C0/B1D3:    E8          INX             Increment X
-C0/B1D4:    E8          INX             Increment X
-C0/B1D5:    86 E8       STX $E8         Store X in $E8             | ($E8+3) -> $E8
+C0/B1CE:    9F F6 05 00 STA $0005F6,X   Store A in 00/05(F6+ESP)
+C0/B1D2:    E8          INX             Increment Event Stack Pointer
+C0/B1D3:    E8          INX             Increment ESP
+C0/B1D4:    E8          INX             Increment ESP
+C0/B1D5:    86 E8       STX $E8         Store ESP in $E8
 C0/B1D7:    A9 01       LDA #$01        Set A = 01
 C0/B1D9:    9D C4 05    STA $05C4,X     Store A in $05(C4+X)
 C0/B1DC:    4C 6D 9A    JMP $9A6D       Jump to C0/9A6D
