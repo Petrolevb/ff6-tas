@@ -18756,15 +18756,15 @@ C0/9A64:	A547    	LDA $47
 C0/9A66:	2903    	AND #$03
 C0/9A68:	D003    	BNE $9A6D
 C0/9A6A:	204A71  	JSR $714A
-C0/9A6D:	A6E3    	LDX $E3		(from C0/9A5E, C0/9A68)
-C0/9A6F:	F004    	BEQ $9A75
-C0/9A71:	CA      	DEX
-C0/9A72:	86E3    	STX $E3
-C0/9A74:	60      	RTS
+C0/9A6D:	A6 E3    	LDX $E3         X = $E3 (from C0/9A5E, C0/9A68)
+C0/9A6F:	F0 04    	BEQ $9A75       Si $E3 = 0, JMP C0/9A75
+C0/9A71:	CA      	DEX             Sinon décrémente X
+C0/9A72:	86 E3    	STX $E3         Store X dans $E3
+C0/9A74:	60      	RTS             Return to Stack
  
-C0/9A75:	AD9807  	LDA $0798		(from C0/9A6F)
-C0/9A78:	F001    	BEQ $9A7B
-C0/9A7A:	60      	RTS
+C0/9A75:	AD 98 07  	LDA $0798       A = $0798 (from C0/9A6F)
+C0/9A78:	F0 01    	BEQ $9A7B       Si $0798 = 0, JMP C0/9A7B
+C0/9A7A:	60      	RTS             Sinon, Return to Stack
  
 C0/9A7B:	AD5A05  	LDA $055A		(from C0/9A78)
 C0/9A7E:	F004    	BEQ $9A84
@@ -22134,35 +22134,35 @@ Call subroutine aaaaaa (+$CA0000/$0A0200)
 (gen. act. B2)
 Takes 3 arguments from B2 and jump to the corresponding address 
 after setting a + 0xCA to the bank (C0/B1CA)
-C0/B1A1:	A904    	LDA #$04	Set A = 04
-C0/B1A3:	A6E8    	LDX $E8		Set X = 7E/00E8
-C0/B1A5:	18      	CLC		Clear Carry Bit
-C0/B1A6:	65E5    	ADC $E5		Set A += 7E/00E5
-C0/B1A8:	9D9405  	STA $0594,X	Store A in ...
-C0/B1AB:	A5E6    	LDA $E6		Set A = 7E/00E6
-C0/B1AD:	6900    	ADC #$00	Add 0 to A
-C0/B1AF:	9D9505  	STA $0595,X	Store A in ...
-C0/B1B2:	A5E7    	LDA $E7		Set A = 7E/00E7
-C0/B1B4:	6900    	ADC #$00	Add 0 to A
-C0/B1B6:	9D9605  	STA $0596,X	Store A in ...
-C0/B1B9:	A5EB    	LDA $EB		Set A = 7E/00EB
-C0/B1BB:	85E5    	STA $E5		Store A in 7E/00E5
-C0/B1BD:	9DF405  	STA $05F4,X	Store A in ...
-C0/B1C0:	A5EC    	LDA $EC		Set A = 7E/00EC
-C0/B1C2:	85E6    	STA $E6		Store A in 7E/00E6
-C0/B1C4:	9DF505  	STA $05F5,X	Store A in ...
-C0/B1C7:	A5ED    	LDA $ED		Set A = 7E/00ED
-C0/B1C9:	18      	CLC		Clear Carry Bit
-C0/B1CA:	69CA    	ADC #$CA	A += 0xCA
-C0/B1CC:	85E7    	STA $E7		Store A in 7E/00E7
-C0/B1CE:	9FF60500	STA $0005F6,X	Store A in ...
-C0/B1D2:	E8      	INX		Increment X
-C0/B1D3:	E8      	INX		Increment X
-C0/B1D4:	E8      	INX		Increment X
-C0/B1D5:	86E8    	STX $E8		Store X in 7E/00E8
-C0/B1D7:	A901    	LDA #$01	Set A = 01
-C0/B1D9:	9DC405  	STA $05C4,X	Store A in
-C0/B1DC:	4C6D9A  	JMP $9A6D	Jump to C0/9A6D
+C0/B1A1:    A9 04       LDA #$04        Set A = 04
+C0/B1A3:    A6 E8       LDX $E8         Set X = $E8                | X = $E8
+C0/B1A5:    18          CLC             Clear Carry Bit
+C0/B1A6:    65 E5       ADC $E5         Set A += $E5
+C0/B1A8:    9D 94 05    STA $0594,X     Store A in $05(94+X)       | X = $E8
+C0/B1AB:    A5 E6       LDA $E6         Set A = $E6
+C0/B1AD:    69 00       ADC #$00        Add 0 to A
+C0/B1AF:    9D 95 05    STA $0595,X     Store A in $05(95+X)       | X = $E8
+C0/B1B2:    A5 E7       LDA $E7         Set A = $E7
+C0/B1B4:    69 00       ADC #$00        Add 0 to A
+C0/B1B6:    9D 96 05    STA $0596,X     Store A in $05(96+X)       | X = $E8
+C0/B1B9:    A5 EB       LDA $EB         Set A = $EB
+C0/B1BB:    85 E5       STA $E5         Store A in $E5
+C0/B1BD:    9D F4 05    STA $05F4,X     Store A in $05(F4+X)       | X = $E8
+C0/B1C0:    A5 EC       LDA $EC         Set A = $EC
+C0/B1C2:    85 E6       STA $E6         Store A in $E6
+C0/B1C4:    9D F5 05    STA $05F5,X     Store A in $05(F5+X)       | X = $E8
+C0/B1C7:    A5 ED       LDA $ED         Set A = $ED
+C0/B1C9:    18          CLC             Clear Carry Bit
+C0/B1CA:    69 CA       ADC #$CA        A += 0xCA
+C0/B1CC:    85 E7       STA $E7         Store A in $E7
+C0/B1CE:    9F F6 05 00 STA $0005F6,X   Store A in 00/05(F6+X)     | X = $E8
+C0/B1D2:    E8          INX             Increment X
+C0/B1D3:    E8          INX             Increment X
+C0/B1D4:    E8          INX             Increment X
+C0/B1D5:    86 E8       STX $E8         Store X in $E8             | ($E8+3) -> $E8
+C0/B1D7:    A9 01       LDA #$01        Set A = 01
+C0/B1D9:    9D C4 05    STA $05C4,X     Store A in $05(C4+X)
+C0/B1DC:    4C 6D 9A    JMP $9A6D       Jump to C0/9A6D
 
 Jump to subroutine aaaaaa (+$CA0000/$0A0200), repeat XX times
 (gen. act. B3)
