@@ -14562,39 +14562,39 @@ C0/7804:	4CE976  	JMP $76E9
 
 Movement Action's Jump Table:
 
-C0/7807:	7B78
-C0/7809:	8678
-C0/780B:	9178
-C0/780D:	057A
+C0/7807:	7B78   Set entity to walk when moving
+C0/7809:	8678   Set entity to stay still when moving
+C0/780B:	9178   Set entity layering priority
+C0/780D:	057A   Place entity on vehicle xx
 C0/780F:	0000
 C0/7811:	0000
-C0/7813:	AB78
-C0/7815:	B778
-C0/7817:	C478
-C0/7819:	D178
+C0/7813:	AB78   Turn current entity up
+C0/7815:	B778   Turn current entity right
+C0/7817:	C478   Turn current entity down
+C0/7819:	D178   Turn current entity left
 C0/781B:	DE78
-C0/781D:	2879
+C0/781D:	2879   Hide current entity
 C0/781F:	0000
 C0/7821:	0000
 C0/7823:	0000
-C0/7825:	1E7A
+C0/7825:	1E7A   Set position to (xx, yy)
 C0/7827:	0000
-C0/7829:	657A
+C0/7829:	657A   Center entity on screen
 C0/782B:	0000
 C0/782D:	0000
 C0/782F:	0000
 C0/7831:	0000
-C0/7833:	947A
-C0/7835:	9C7A
+C0/7833:	947A   Make entity jump (low)
+C0/7835:	9C7A   Make entity jump (high)
 C0/7837:	0000
 C0/7839:	0000
-C0/783B:	A47A
-C0/783D:	6979
-C0/783F:	8379
-C0/7841:	9D79
-C0/7843:	B779
-C0/7845:	D179
-C0/7847:	EB79
+C0/783B:	A47A   Pause for xx/60 seconds
+C0/783D:	6979   Set event bit $1E80 + xx ($1E80 + $0xx)
+C0/783F:	8379   Set event bit $1EA0 + xx ($1E80 + $1xx)
+C0/7841:	9D79   Set event bit $1EC0 + xx ($1E80 + $2xx)
+C0/7843:	B779   Clear event bit $1E80 + xx ($1E80 + $0xx)
+C0/7845:	D179   Clear event bit $1EA0 + xx ($1E80 + $1xx)
+C0/7847:	EB79   Clear event bit $1EC0 + xx ($1E80 + $2xx)
 C0/7849:	0000
 C0/784B:	0000
 C0/784D:	0000
@@ -14613,11 +14613,11 @@ C0/7865:	0000
 C0/7867:	0000
 C0/7869:	0000
 C0/786B:	0000
-C0/786D:	CF7A
-C0/786F:	0C7B
-C0/7871:	197B
-C0/7873:	267B
-C0/7875:	4B7B
+C0/786D:	CF7A   Jump out of the queue to $aaaaaa+$CA0000
+C0/786F:	0C7B   Randomly branch backward xx bytes in the queue
+C0/7871:	197B   Randomly branch forward xx bytes in the queue
+C0/7873:	267B   Branch backward xx bytes in the queue
+C0/7875:	4B7B   Branch forward xx bytes in the queue
 C0/7877:	0000
 
 C0/7879:	70
